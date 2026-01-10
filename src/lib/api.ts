@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:8000/api";
+// const API_URL = "https://cinephile-backend-ji5r.onrender.com/api";  
+// const API_URL = "http://localhost:8000/api";
+const API_URL = "https://cinephile-backend-ji5r.onrender.com/api";
 
 export async function fetchFeed() {
   const res = await fetch(`${API_URL}/posts`, { cache: 'no-store' });
