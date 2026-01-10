@@ -31,7 +31,7 @@ interface ChatWindowProps {
 }
 
 export function ChatWindow({ otherUser }: ChatWindowProps) {
-  const { user } = useAuth();
+  const { user }:any = useAuth();
   const { socket, isConnected } = useSocket();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");

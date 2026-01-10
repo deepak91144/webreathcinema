@@ -104,7 +104,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <div>
                   <h4 className="font-semibold mb-3 text-sm text-muted-foreground uppercase tracking-wide">Genres</h4>
                   <div className="flex flex-wrap gap-2">
-                    {user.preferences.favoriteGenres.map((genre) => (
+                    {user.preferences.favoriteGenres.map((genre: string) => (
                       <span key={genre} className={`px-3 py-1 rounded-full text-sm border ${theme.color} border-current/30 bg-current/10`}>
                         {genre}
                       </span>
@@ -120,7 +120,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     Favorite Movies
                   </h4>
                   <ul className="space-y-1">
-                    {user.preferences.favoriteMovies.slice(0, 5).map((movie) => (
+                    {user.preferences.favoriteMovies.slice(0, 5).map((movie: string) => (
                       <li key={movie} className="text-foreground/80">{movie}</li>
                     ))}
                   </ul>
@@ -134,7 +134,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     Favorite Actors
                   </h4>
                   <ul className="space-y-1">
-                    {user.preferences.favoriteActors.slice(0, 5).map((actor) => (
+                    {user.preferences.favoriteActors.slice(0, 5).map((actor: string) => (
                       <li key={actor} className="text-foreground/80">{actor}</li>
                     ))}
                   </ul>
@@ -148,7 +148,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     Favorite Actresses
                   </h4>
                   <ul className="space-y-1">
-                    {user.preferences.favoriteActresses.slice(0, 5).map((actress) => (
+                    {user.preferences.favoriteActresses.slice(0, 5).map((actress: string) => (
                       <li key={actress} className="text-foreground/80">{actress}</li>
                     ))}
                   </ul>

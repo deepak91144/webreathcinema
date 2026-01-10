@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { MessageCircle, Send, Loader2, Users } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -21,7 +21,7 @@ interface Conversation {
   unreadCount: number;
 }
 
-export default function ChatPage() {
+function ChatContent() {
   const { user } = useAuth();
   const searchParams = useSearchParams();
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -157,5 +157,19 @@ export default function ChatPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ChatPage() {
+  return (
+    <Suspense fallback={
+      <div className="container max-w-6xl px-4 py-16">
+        <div className="flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </div>
+    }>
+      <ChatContent />
+    </Suspense>
   );
 }
