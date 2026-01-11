@@ -19,14 +19,25 @@ export function CreatePostModal({ open, onOpenChange }: CreatePostModalProps) {
   const [movies, setMovies] = useState<any[]>([]);
 
   useEffect(() => {
-    if (open) {
+    // Initial fetch
+    if (open && !searchTerm) {
         fetchMovies().then(setMovies).catch(console.error);
     }
-  }, [open]);
+  }, [open, searchTerm]);
 
-  const filteredMovies = movies.filter(m => 
-    m.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm) {
+        fetchMovies(searchTerm).then(setMovies).catch(console.error);
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
+
+  // Client side filtering is redundant if backend filters, but okay for mixed approach.
+  // We'll rely on backend results if searchTerm is present.
+  const displayMovies = searchTerm ? movies : movies; 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,7 +95,7 @@ export function CreatePostModal({ open, onOpenChange }: CreatePostModalProps) {
                  />
                </div>
                <div className="h-[200px] overflow-y-auto space-y-2">
-                 {filteredMovies.map(movie => (
+                 {displayMovies.map(movie => (
                    <div 
                       key={movie._id || movie.tmdbId}
                       className="flex items-center gap-3 p-2 hover:bg-muted/50 rounded-md cursor-pointer transition-colors"

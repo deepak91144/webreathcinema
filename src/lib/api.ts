@@ -48,8 +48,11 @@ export async function toggleLike(postId: string, increment: boolean) {
   return res.json();
 }
 
-export async function fetchMovies() {
-    const res = await fetch(`${API_URL}/movies`);
+export async function fetchMovies(query: string = "") {
+    const url = query 
+        ? `${API_URL}/movies?q=${encodeURIComponent(query)}` 
+        : `${API_URL}/movies`;
+    const res = await fetch(url);
     if(!res.ok) return [];
     return res.json();
 }

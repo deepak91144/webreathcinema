@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Film, Compass, Home, PlusSquare, LogIn, Bell, MessageCircle } from "lucide-react";
+import { Film, Compass, Home, PlusSquare, LogIn, Bell, MessageCircle, PenTool } from "lucide-react";
 import { CreatePostModal } from "@/components/CreatePostModal";
 import { SignInModal } from "@/components/SignInModal";
 import { PreferencesModal } from "@/components/PreferencesModal";
@@ -73,8 +73,8 @@ export function Navbar() {
                       onClick={() => setIsPostModalOpen(true)}
                       className="flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors"
                     >
-                      <PlusSquare className="h-5 w-5" />
-                      <span className="hidden sm:inline">Log</span>
+                      <PenTool className="h-5 w-5" />
+                      <span className="hidden sm:inline">Post</span>
                     </button>
 
                     <Link href={`/profile/${user.username}`} className="flex items-center gap-2 transition-colors hover:text-foreground/80 text-foreground/60">
